@@ -33,14 +33,14 @@
 
 ### Commit
 
-- `c89f84f` Initial import of GovCon Scout (deterministic federal bid scout): the 39 files reviewed above. The fixture email, the `.bat` location and the failing test are still open.
+- `c89f84f` (since rewritten as `6ac4941`, see below) Initial import of GovCon Scout (deterministic federal bid scout): the 39 files reviewed above.
 
 ## Phase 1B — Make the code tell the truth (2026-10-30)
 
 | File | Change | Why |
 |---|---|---|
 | `tests/test_assistant.py` | `test_missing_api_key_gives_setup_help` now monkeypatches `assistant.GOOGLE_API_KEY` to `""` (assertion unchanged) | The test was reading the real key from `.env` and making a live Gemini call. Now it is offline and tests what its name says. |
-| `tests/fixtures/sam_response.json` | Contracting officer's name, email and phone replaced with `Contracting Officer` / `contracting.officer@example.mil` / `5555550100`. The DLA `DibbsBSM` mailbox is kept because DIBBS detection reads it. | Keep a named individual's contact details out of a public repo. The original is still in commit `c89f84f`. |
+| `tests/fixtures/sam_response.json` | Contracting officer's name, email and phone replaced with `Contracting Officer` / `contracting.officer@example.mil` / `5555550100`. The DLA `DibbsBSM` mailbox is kept because DIBBS detection reads it. | Keep a named individual's contact details out of a public repo. The first commit was later rewritten so the original details are not in history (see below). |
 | `docs/private/README.legacy.md` | Copy of the old README (gitignored) | Kept before the rewrite |
 | `README.md` | Rewritten: deterministic-pipeline story, accurate diagram, two gates, data sources, both LLM uses (note enrichment, Advisor), quickstart, known limitations, license TODO; no emoji | The old README described a multi-agent LLM system that is no longer the code |
 | `agents.py` -> `legacy/agents.py` | `git mv`; module docstring now says it is history only | Nothing imports it (checked with grep), so no imports changed |
@@ -62,3 +62,16 @@ Found and documented in the README (not fixed, because these are logic changes):
 - A NO-GO lead still reports a `recommended_max_bid_usd`.
 - With no ceiling data, a verified quote can reach GO.
 - A SAM.gov 429 response looks the same as an empty result in the UI.
+
+## History rewrite (2026-10-30, approved)
+
+The contracting officer's contact details were in the initial commit, so I rebuilt both commits with `git commit-tree`. The original messages, authors and dates are kept.
+
+| Old | New | Difference |
+|---|---|---|
+| `c89f84f` Initial import | `6ac4941` | `tests/fixtures/sam_response.json` contains the placeholder contact |
+| `b2377ed` Docs | `8a1a6e1` | Identical tree; the fixture no longer shows as changed in this commit |
+
+- Verified: `git log -p main` contains no reference to the officer, and the working tree is unchanged.
+- Tests: 60 passed.
+- The old commits remain only in the local reflog (they are never pushed). The folder backup still has the original fixture.
