@@ -83,3 +83,16 @@ The contracting officer's contact details were in the initial commit, so I rebui
 | `PORTFOLIO_CLEANUP_LOG.md` | Reworded the Phase 1B search note so the log itself no longer spells out the rule 7 terms | The final scan of the committed tree caught the log containing them |
 
 Final scan of `git archive HEAD`: no secret values, no `.env` values except the placeholder shipper defaults in `config.py` and `INSTALL.md`, no officer contact. Tests: 60 passed.
+
+## Commit email switched to the GitHub noreply address (2026-10-30, approved)
+
+I set a repo-local `user.email` to the GitHub noreply address; the global git config is unchanged. Then I re-created all commits on `main` with that address as author and committer. Names, dates, messages and file contents are unchanged, so the personal email is not published.
+
+| Old | New |
+|---|---|
+| `6ac4941` Initial import | `d93d2c3` |
+| `8a1a6e1` Docs | `69ce467` |
+| `867158d` Log: rewrite | `ac73046` |
+| `118fe7b` Log: hand-off | `a5f26c8` |
+
+Hashes mentioned earlier in this log refer to the pre-switch commits.
