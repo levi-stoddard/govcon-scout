@@ -52,7 +52,7 @@
 
 Tests after Phase 1B: **60 passed, 0 failed** (`python -m pytest tests/ -v`).
 
-Search for "founder", ForgeX, Binnacle, Stoddard: no hits in tracked files. The only match was the substring "Found**Er**ror" in `INSTALL.md:572`, which is not a real hit.
+Search for the rule 7 terms (the role word and the three private project/company names): no hits in tracked files. The only match was a substring inside "ModuleNotFoundError" in `INSTALL.md:572`, which is not a real hit.
 
 Found and documented in the README (not fixed, because these are logic changes):
 
@@ -75,3 +75,11 @@ The contracting officer's contact details were in the initial commit, so I rebui
 - Verified: `git log -p main` contains no reference to the officer, and the working tree is unchanged.
 - Tests: 60 passed.
 - The old commits remain only in the local reflog (they are never pushed). The folder backup still has the original fixture.
+
+## Phase 1C — Hand-off (2026-10-30)
+
+| File | Change | Why |
+|---|---|---|
+| `PORTFOLIO_CLEANUP_LOG.md` | Reworded the Phase 1B search note so the log itself no longer spells out the rule 7 terms | The final scan of the committed tree caught the log containing them |
+
+Final scan of `git archive HEAD`: no secret values, no `.env` values except the placeholder shipper defaults in `config.py` and `INSTALL.md`, no officer contact. Tests: 60 passed.
