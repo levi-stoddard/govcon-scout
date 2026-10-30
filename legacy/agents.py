@@ -1,9 +1,12 @@
 """
-agents.py — LEGACY CrewAI agent definitions.
+legacy/agents.py — The original CrewAI Scout / Analyst / Red-Team agents.
 
-The pipeline no longer routes numbers through these agents (see pipeline.py —
-all math is deterministic Python). Kept for the optional USE_LLM note-writing
-layer and future LLM experiments. Margin references config, not magic numbers.
+Retained for history only. Nothing imports this module. In this first version
+the LLM agents computed prices and margins and issued compliance verdicts;
+those numbers could not be verified, so the money path was rebuilt as
+deterministic Python in pipeline.py (July 2026). The optional LLM layer in
+crew_runner.py builds its own prose-only agent and does not use these.
+Running this file requires requirements-llm.txt and the project root on sys.path.
 """
 from __future__ import annotations
 from crewai import Agent, LLM

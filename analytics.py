@@ -1,3 +1,9 @@
+"""
+analytics.py — Market intel from USASpending award history.
+
+Fetches past awards for a keyword and derives competitor, price-trend and
+regional stats for the app's market tab and the Advisor's tools.
+"""
 import logging, requests
 from datetime import datetime, timedelta, timezone
 import pandas as pd

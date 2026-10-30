@@ -1,3 +1,9 @@
+"""
+config.py — Settings loaded from .env plus the business-rule constants.
+
+The single source of truth for margins, thresholds and compliance country
+lists; secret values are only ever read from the environment.
+"""
 from __future__ import annotations
 import os
 from dotenv import load_dotenv

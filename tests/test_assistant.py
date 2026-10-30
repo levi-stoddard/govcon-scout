@@ -78,7 +78,10 @@ def test_unknown_tool_handled():
     assert reply == "Recovered."
 
 
-def test_missing_api_key_gives_setup_help():
+def test_missing_api_key_gives_setup_help(monkeypatch):
+    # chat() falls back to config's GOOGLE_API_KEY (loaded from .env); clear it so
+    # the test stays offline and actually exercises the missing-key path.
+    monkeypatch.setattr(assistant, "GOOGLE_API_KEY", "")
     reply, _, _ = assistant.chat("hi", api_key="")
     assert "GOOGLE_API_KEY" in reply
 

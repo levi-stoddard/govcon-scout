@@ -4,7 +4,7 @@ scan_daily.py — The Hunter: your autonomous contract-finding agent (Tier 2+).
 Every run it:
   1. DISCOVERS — scans candidate niches you're NOT watching; if one scores
      high (dense micro-buys, soft competition), it adds the search itself
-     and tells you why (max 2 new niches per run, marked 🤖).
+     and tells you why (max 2 new niches per run, marked with a robot icon in the app).
   2. SCANS — runs the full pipeline on every saved search (yours + its own).
   3. QUALIFIES — leads that clear your margin target and aren't compliance
      FAILs get auto-tracked into your pipeline with a note.

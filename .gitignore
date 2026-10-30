@@ -25,3 +25,7 @@ files.zip
 .claude/
 .agents/
 docs/private/
+
+# Generated output (quote sheets carry company details)
+quotes/
+smoke_test_result.json

@@ -30,3 +30,35 @@
 - The `.bat` launchers were **not** moved to `docs/private/`. They `cd /d "%~dp0"`, so they would stop working there, and the desktop shortcut points at `Launch GovCon Scout.bat`. They contain no personal details and `*.bat` is gitignored.
 - No other file outside `.env` holds company details, so nothing else was moved.
 - No commit yet.
+
+### Commit
+
+- `c89f84f` Initial import of GovCon Scout (deterministic federal bid scout): the 39 files reviewed above. The fixture email, the `.bat` location and the failing test are still open.
+
+## Phase 1B — Make the code tell the truth (2026-10-30)
+
+| File | Change | Why |
+|---|---|---|
+| `tests/test_assistant.py` | `test_missing_api_key_gives_setup_help` now monkeypatches `assistant.GOOGLE_API_KEY` to `""` (assertion unchanged) | The test was reading the real key from `.env` and making a live Gemini call. Now it is offline and tests what its name says. |
+| `tests/fixtures/sam_response.json` | Contracting officer's name, email and phone replaced with `Contracting Officer` / `contracting.officer@example.mil` / `5555550100`. The DLA `DibbsBSM` mailbox is kept because DIBBS detection reads it. | Keep a named individual's contact details out of a public repo. The original is still in commit `c89f84f`. |
+| `docs/private/README.legacy.md` | Copy of the old README (gitignored) | Kept before the rewrite |
+| `README.md` | Rewritten: deterministic-pipeline story, accurate diagram, two gates, data sources, both LLM uses (note enrichment, Advisor), quickstart, known limitations, license TODO; no emoji | The old README described a multi-agent LLM system that is no longer the code |
+| `agents.py` -> `legacy/agents.py` | `git mv`; module docstring now says it is history only | Nothing imports it (checked with grep), so no imports changed |
+| (all files) | Searched for "APEX" (case-insensitive, whole word) across tracked files | No hits; nothing renamed |
+| `analytics.py`, `config.py`, `tests/conftest.py`, `tools/__init__.py` | Added one- or two-sentence module docstrings | These were the only modules without one; no logic changed |
+| `scan_daily.py` | The module docstring's "marked 🤖" now says "marked with a robot icon in the app" | The only emoji in any docstring. The runtime marker strings are unchanged. |
+| `docs/ARCHITECTURE.md` | New: `_apply_margin` walk-through with worked examples computed by the real function, compliance verdict order, unknown-COO REVIEW, estimate cap, ceiling below COGS, edge cases | Interview prep and design record |
+| `.gitignore` | Added `quotes/` and `smoke_test_result.json` | The scanner and smoke test write these; quote sheets include company details |
+
+Tests after Phase 1B: **60 passed, 0 failed** (`python -m pytest tests/ -v`).
+
+Search for "founder", ForgeX, Binnacle, Stoddard: no hits in tracked files. The only match was the substring "Found**Er**ror" in `INSTALL.md:572`, which is not a real hit.
+
+Found and documented in the README (not fixed, because these are logic changes):
+
+- `GRAINGER_API_KEY`, `ZORO_API_KEY`, `USPS_USER_ID` and the `SHIPPER_*` variables are defined but unused.
+- `GEMINI_MODEL` is not honored by `assistant.py` or `crew_runner.py`.
+- `analytics.beat_this_price` defaults to a 15% margin; the rest of the app uses 25%.
+- A NO-GO lead still reports a `recommended_max_bid_usd`.
+- With no ceiling data, a verified quote can reach GO.
+- A SAM.gov 429 response looks the same as an empty result in the UI.

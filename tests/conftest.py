@@ -1,3 +1,4 @@
+"""Pytest setup: put the project root on sys.path so tests import modules directly."""
 import os
 import sys
 
