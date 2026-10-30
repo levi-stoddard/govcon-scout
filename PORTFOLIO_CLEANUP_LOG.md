@@ -96,3 +96,11 @@ I set a repo-local `user.email` to the GitHub noreply address; the global git co
 | `118fe7b` Log: hand-off | `a5f26c8` |
 
 Hashes mentioned earlier in this log refer to the pre-switch commits.
+
+## License and plan notes (2026-10-30, requested)
+
+| File | Change | Why |
+|---|---|---|
+| `LICENSE` | New: MIT, © 2026 Levi Stoddard | Requested license choice; permissive, the standard for a portfolio code repo |
+| `README.md` | License section now links the MIT `LICENSE`; the rebuild link points to `TESTING.md` only | `PLAN.md` is no longer in the repo |
+| `PLAN.md` -> `docs/private/PLAN.md` | `git mv`, then `git rm --cached`; the file stays on disk, gitignored | Personal planning notes. It is still in the earlier public commits on GitHub. |

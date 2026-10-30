@@ -4,7 +4,7 @@ GovCon Scout is a federal micro-purchase bid scout for small-business resellers.
 
 ## Why it's deterministic
 
-The first version was a three-agent CrewAI pipeline (Scout, Analyst, Red-Team) where the LLM computed prices and margins and issued compliance verdicts. In practice the numbers drifted between runs and I couldn't trace where they came from. The compliance agent was also passing leads on insufficient evidence: country of origin was hardcoded to US, and a title-only scan could come back PASS. In the July 2026 rebuild (see [`PLAN.md`](PLAN.md) and [`TESTING.md`](TESTING.md)), I moved every number and every verdict into plain, tested Python and demoted the LLM to writing one optional strategy sentence per lead. The original agent definitions are kept in [`legacy/agents.py`](legacy/agents.py) for reference; nothing imports them.
+The first version was a three-agent CrewAI pipeline (Scout, Analyst, Red-Team) where the LLM computed prices and margins and issued compliance verdicts. In practice the numbers drifted between runs and I couldn't trace where they came from. The compliance agent was also passing leads on insufficient evidence: country of origin was hardcoded to US, and a title-only scan could come back PASS. In the July 2026 rebuild (see [`TESTING.md`](TESTING.md)), I moved every number and every verdict into plain, tested Python and demoted the LLM to writing one optional strategy sentence per lead. The original agent definitions are kept in [`legacy/agents.py`](legacy/agents.py) for reference; nothing imports them.
 
 ## Architecture
 
@@ -125,4 +125,4 @@ python scan_daily.py --no-email
 
 ## License
 
-TODO: choose license
+[MIT](LICENSE) © 2026 Levi Stoddard
