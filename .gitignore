@@ -1,0 +1,27 @@
+# Secrets — NEVER commit
+.env
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+.pytest_cache/
+
+# Runtime cache (SAM API responses)
+.cache/
+
+# Local data
+*.db
+*.db-*
+files/
+files.zip
+
+# Local launchers (machine-specific paths)
+*.bat
+
+# Tooling and private notes
+.claude/
+.agents/
+docs/private/

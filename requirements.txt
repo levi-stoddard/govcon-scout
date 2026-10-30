@@ -1,0 +1,11 @@
+# Core (deterministic pipeline + app — always required)
+streamlit
+pandas
+plotly
+requests
+python-dotenv
+pydantic
+pytest
+
+# Optional LLM layer: only needed when USE_LLM=true in .env
+# Install with: pip install -r requirements-llm.txt

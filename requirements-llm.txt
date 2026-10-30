@@ -1,0 +1,6 @@
+# Optional LLM layer — only needed when USE_LLM=true in .env
+# The deterministic pipeline (default) does NOT need any of this.
+crewai==1.13.0
+crewai-tools
+langchain-openai
+langchain-core
