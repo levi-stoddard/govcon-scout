@@ -125,4 +125,4 @@ python scan_daily.py --no-email
 
 ## License
 
-[MIT](LICENSE) © 2026 Levi Stoddard
+All rights reserved ([LICENSE](LICENSE)): published for portfolio review only, not for reuse
